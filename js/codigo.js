@@ -28,7 +28,7 @@ oBtnRegRep.addEventListener("click",mostrarRegistrarRep,false);
 
 //BOTONES ALTAS DE LOS FORMULARIOS
 
-/*var oBtnEnviarAltaProveedor = document.getElementById("btnEnviarAltaProveedor");
+var oBtnEnviarAltaProveedor = document.getElementById("btnEnviarAltaProveedor");
 oBtnEnviarAltaProveedor.addEventListener("click", enviarAltaProveedor, false);
 
 var oBtnEnviarAltaEmpleado = document.getElementById("btnEnviarAltaEmpleado");
@@ -38,7 +38,7 @@ var oBtnEnviarAltaVehiculo = document.getElementById("btnEnviarAltaVehiculo");
 oBtnEnviarAltaVehiculo.addEventListener("click", enviarAltaVehiculo, false);
 
 var oBtnEnviarAltaCliente = document.getElementById("btnEnviarAltaCliente");
-oBtnEnviarAltaCliente.addEventListener("click", enviarAltaCliente, false);*/
+oBtnEnviarAltaCliente.addEventListener("click", enviarAltaCliente, false);
 
 
 function altaProveedor(){
@@ -46,12 +46,12 @@ function altaProveedor(){
 	ocultarFormularios();
 	var formAltaProv = document.getElementById("formAltaProv");
 	formAltaProv.style.display = "block";
-	formAltaProv.submitAltaProv.addEventListener('click',validarAltaProv,false);
+	formAltaProv.btnEnviarAltaProveedor.addEventListener('click',validarAltaProv,false);
 	
 }
 
 function enviarAltaProveedor(){
-
+	if (validarAltaProv()){
 	var formAltaProv= document.getElementById("formAltaProv");
 	var sMensaje = "";
 		
@@ -72,6 +72,7 @@ function enviarAltaProveedor(){
 	}
 
 	alert(sMensaje);
+	}
 
 }
 
@@ -80,7 +81,7 @@ function altaEmpleado(){
 	ocultarFormularios();
 	var formAltaEmp = document.getElementById("formAltaEmpleado");
 	formAltaEmp.style.display = "block";
-	formAltaEmp.submitAltaEmpleado.addEventListener('click',validarAltaEmpleado, false);
+	formAltaEmp.btnEnviarAltaEmpleado.addEventListener('click',validarAltaEmpleado, false);
 	
 }
 
@@ -114,7 +115,7 @@ function altaVehiculo(){
 	ocultarFormularios();
 	var formAltaVeh = document.getElementById("formAltaVeh");
 	formAltaVeh.style.display = "block";
-	formAltaVeh.submitAltaVeh.addEventListener('click',validarAltaVeh, false);
+	formAltaVeh.btnEnviarAltaVehiculo.addEventListener('click',validarAltaVeh, false);
 	
 }
 
@@ -129,7 +130,7 @@ function altaCliente(){
 	ocultarFormularios();
 	var formAltaCli = document.getElementById("formAltaCli");
 	formAltaCli.style.display = "block";
-	formAltaCli.submitAltaCli.addEventListener('click',validarAltaCli, false);
+	formAltaCli.btnEnviarAltaCliente.addEventListener('click',validarAltaCli, false);
 	
 }
 
@@ -231,15 +232,25 @@ function mostrarTipoCamion(){
 //FUNCIONES PARA RELLENAR COMBOS
 function rellenarCombosCompra(){
 	var formRegCompra = document.getElementById("formRegCompra");
+	var selectCompraProv = document.getElementById("selectCompraProv");
+	
 
 	//Combo proveedores
 	if (cvCoches._proveedores.length==0){
-		formRegCompra.selectCompraProv.innerHTML = '<option>No hay proveedores dados de alta</option>';
+		
+		var optionProv = document.createElement("option");
+		var textnode = document.createTextNode("No hay proveedores dados de alta");
+		optionProv.appendChild(textnode);
+		optionProv = selectCompraProv.appendChild(optionProv);
+		//formRegCompra.appendChild(option);
+		//formRegCompra.selectCompraProv.innerHTML = '<option>No hay proveedores dados de alta</option>';
 	} else {
-		formRegCompra.selectCompraProv.innerHTML = '';
 		for (var i=0;i<cvCoches._proveedores.length;i++){
-		formRegCompra.selectCompraProv.innerHTML += '<option value="'+cvCoches._proveedores[i].cif+'">'+cvCoches._proveedores[i].cif+' - '+cvCoches._proveedores[i].nombre+'</option>';
-
+			var optionProv = document.createElement("option");
+		optionProv.setAttribute("value",cvCoches._proveedores[i].cif)
+		var textnode = document.createTextNode( cvCoches._proveedores[i].cif+' - '+cvCoches._proveedores[i].nombre);
+		optionProv.appendChild(textnode);
+		optionProv = selectCompraProv.appendChild(optionProv);
 		
 		}
 	}
@@ -328,9 +339,9 @@ function rellenarCombosReparacion(){
 //--------------VALIDACION----------------------
 
 //validacion formulario alta proveedor
-function validarAltaProv(oEvento)
+function validarAltaProv()
 {
-	var oE = oEvento || window.event;
+
 	var bValido = true;
 	var sError = "";
 
@@ -413,6 +424,9 @@ function validarAltaProv(oEvento)
 	{
 		alert(sError);
 		oE.preventDefault();
+		return false;
+	} else {
+		return true;
 	}
 }
 

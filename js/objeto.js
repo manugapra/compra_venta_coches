@@ -7,7 +7,66 @@ class CVCoches {
         this._ventas = [];
         this._clientes = [];
         this._reparaciones = [];
-    }	
+    }
+
+    //ALTA CONDUCTOR
+	altaProveedor(oProveedor){
+		var bEncontrado= false;
+		var sMensaje = "";
+		
+		for(var i=0; i<this._proveedores.length && bEncontrado==false; i++){
+			if(this._proveedores[i].cif==oProveedor.cif && this._proveedores[i] instanceof Proveedor){
+				bEncontrado= true;
+			}
+		}
+		if (bEncontrado == true) {
+			sMensaje = "Proveedor dado de alta anteriormente";
+		}else{
+			this._proveedores.push(oProveedor);
+			sMensaje = "Proveedor dado de alta";
+		}
+			
+		return sMensaje;
+	}
+
+	altaEmpleado(oEmpleado){
+		var bEncontrado= false;
+		var sMensaje = "";
+		
+		for(var i=0; i<this._empleados.length && bEncontrado==false; i++){
+			if(this._empleados[i].dni==oEmpleado.dni && this._empleados[i] instanceof Empleado){
+				bEncontrado= true;
+			}
+		}
+		if (bEncontrado == true) {
+			sMensaje = "Empleado dado de alta anteriormente";
+		}else{
+			this._empleados.push(oEmpleado);
+			sMensaje = "Empleado dado de alta";
+		}
+			
+		return sMensaje;
+	}
+
+	altaCliente(oCliente){
+		var bEncontrado= false;
+		var sMensaje = "";
+		
+		for(var i=0; i<this._clientes.length && bEncontrado==false; i++){
+			if(this._clientes[i].dni==oCliente.dni && this._clientes[i] instanceof Cliente){
+				bEncontrado= true;
+			}
+		}
+		if (bEncontrado == true) {
+			sMensaje = "Cliente dado de alta anteriormente";
+		}else{
+			this._clientes.push(oCliente);
+			sMensaje = "Cliente dado de alta";
+		}
+			
+		return sMensaje;
+	}
+
 }
 
 function Proveedor(cif, nombre, direccion, telefono, tipo){
