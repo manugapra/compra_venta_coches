@@ -37,85 +37,85 @@
 				<!--FORMULARIOS-->
 				<div class="col-sm-6">
 					
-					<form id="formAltaProv" name="formAltaProv" class="formulario">
+					<form name="formAltaProv" id="formAltaProv" class="formulario">
 						<h3>Alta proveedor</h3>
 							<div class="form-group">
 						   		<label>CIF</label>
-						   		<input type="text" class="form-control" id="cifProv" name="cifProv" required>
+						   		<input type="text" class="form-control" id="cifProv">
 						    </div>
 						  	<div class="form-group">
 						   		<label>Nombre</label>
-						   		<input type="text" class="form-control" id="nomProv" name="nomProv" required>
+						   		<input type="text" class="form-control" id="nomProv">
 						    </div>
 						    <div class="form-group">
 						   		<label>Dirección</label>
-						   		<input type="text" class="form-control" id="dirProv" name="dirProv" required>
+						   		<input type="text" class="form-control" id="dirProv">
 						    </div>
 						       <div class="form-group">
 						   		<label>Teléfono</label>
-						   		<input type="text" class="form-control" id="telProv" name="telProv" required>
+						   		<input type="text" class="form-control" id="telProv">
 						    </div>
 						       <div class="form-group">
 						   		<label>Tipo</label>
-						   		<input type="text" class="form-control" id="tipoProv" name="tipoProv" required>
+						   		<input type="text" class="form-control" id="tipoProv">
 						    </div>
 						  
-						  	<button type="submit" class="btn btn-default" name="submitAltaProv">Enviar</button>
+						  	<input type="button" class="btn btn-default" id="btnEnviarAltaProveedor" value="Enviar">
 						  	<button type="reset" class="btn btn-danger">Limpiar</button>
 					</form> 
 
-					<form id="formAltaEmpleado" name="formAltaEmpleado" class="formulario">
+					<form id="formAltaEmpleado" class="formulario">
 						<h3>Alta Empleado</h3>
 							<div class="form-group">
 						   		<label>DNI</label>
-						   		<input type="text" class="form-control" id="dniEmp" name="dniEmp" required>
+						   		<input type="text" class="form-control" id="dniEmp">
 						    </div>
 						  	<div class="form-group">
 						   		<label>Nombre</label>
-						   		<input type="text" class="form-control" id="nomEmp" name="nomEmp" required>
+						   		<input type="text" class="form-control" id="nomEmp">
 						    </div>
 						    <div class="form-group">
 						   		<label>Apellidos</label>
-						   		<input type="text" class="form-control" id="apeEmp" name="apeEmp" required>
+						   		<input type="text" class="form-control" id="apeEmp">
 						    </div>
 						       <div class="form-group">
 						   		<label>Nº de Ventas</label>
-						   		<input type="text" class="form-control" id="ventasEmp" name="ventasEmp" required>
+						   		<input type="text" class="form-control" id="ventasEmp">
 						    </div>
 						       	<div class="form-group">
 						   		<label>Salario</label>
-						   		<input type="text" class="form-control" id="salEmp" name="salEmp" required>
+						   		<input type="text" class="form-control" id="salEmp">
 						    </div>
 						  
-						<button type="submit" class="btn btn-default" name="submitAltaEmpleado">Enviar</button>
+						<input type="button" class="btn btn-default" id="btnEnviarAltaEmpleado" value="Enviar">
 						<button type="reset" class="btn btn-danger">Limpiar</button>
 					</form> 
 
-					<form id="formAltaVeh" name="formAltaVeh" class="formulario">
+					<form id="formAltaVeh" class="formulario">
 						<h3>Alta Vehículo</h3>
 							<div class="form-group">
 						   		<label>Matrícula</label>
-						   		<input type="text" class="form-control" id="matVehiculo" name="matVehiculo" required>
+						   		<input type="text" class="form-control" id="matVehiculo">
 						    </div>
 						  	<div class="form-group">
 						   		<label>Marca</label>
-						   		<input type="text" class="form-control" id="marcaVehiculo" name="marcaVehiculo" required>
+						   		<input type="text" class="form-control" id="marcaVehiculo">
 						    </div>
 						    <div class="form-group">
 						   		<label>Modelo</label>
-						   		<input type="text" class="form-control" id="modVehiculo" name="modVehiculo" required>
+						   		<input type="text" class="form-control" id="modVehiculo">
 						    </div>
 						    <div class="form-group">
 						   		<label>Tasación</label>
-						   		<input type="text" class="form-control" id="tasVehiculo" name="tasVehiculo" required>
+						   		<input type="text" class="form-control" id="tasVehiculo">
 						    </div>
 						    <div class="form-group">
 						   		<label>Combustible</label>
-						   		<input type="text" class="form-control" id="combVehiculo" name="combVehiculo" required>
+						   		<input type="text" class="form-control" id="combVehiculo">
 						    </div>
 						    <div class="form-group">
 						   		<label>Plazas</label>
-						   		<input type="text" class="form-control" id="plazasVehiculo" name="plazasVehiculo" required>
+						   		<input type="text" class="form-control" id="plazasVehiculo">
 						    </div>
 						    <div class="radio">
 								<label><input type="radio" id="radioCoche" name="tipoVehiculo" value="coche">Coche</label>
@@ -124,33 +124,33 @@
 							<div id="tipoCoche">
 								<div class="form-group">
 							   		<label>Número de puertas</label>
-							   		<input type="text" class="form-control" id="nPuertasCoche" name="nPuertasCoche" required>
+							   		<input type="text" class="form-control" id="nPuertasCoche">
 								</div>
 								<div class="form-group">
 									<label>Tapicería</label>
-									<input type="text" class="form-control" id="tapiceriaCoche" name="tapiceriaCoche" required>
+									<input type="text" class="form-control" id="tapiceriaCoche">
 								</div>
 								<div class="form-group">
 									<label>Tipo de Coche</label>
-									<input type="text" class="form-control" id="tpCoche" name="tpCoche" required>
+									<input type="text" class="form-control" id="tpCoche">
 								</div>
 							</div>
 							<div id="tipoCamion">
 								<div class="form-group">
 						   			<label>Carga Máxima</label>
-						   			<input type="text" class="form-control" id="cargaCamion" name="cargaCamion" required>
+						   			<input type="text" class="form-control" id="cargaCamion">
 								</div>
 								<div class="form-group">
 								   	<label>Tipo de carga</label>
-								   	<input type="text" class="form-control" id="tipoCargaCamion" name="tipoCargaCamion" required>
+								   	<input type="text" class="form-control" id="tipoCargaCamion">
 								</div>
 								<div class="form-group">
 								   	<label>Capacidad de Combustible</label>
-								   	<input type="text" class="form-control" id="capCombCamion" name="capCombCamion" required>
+								   	<input type="text" class="form-control" id="capCombCamion">
 								</div>
 							</div>
 					  
-					  	<button type="submit" class="btn btn-default" name="submitAltaVeh">Enviar</button>
+					  	<input type="button" class="btn btn-default" id="btnEnviarAltaVehiculo" value="Enviar">
 					  	<button type="reset" class="btn btn-danger">Limpiar</button>
 					</form> 
 
@@ -174,96 +174,101 @@
 						   		<input type="text" class="form-control" id="telCliente">
 						    </div>
 						  
-						  	<button type="submit" class="btn btn-default" name="submitAltaCli">Enviar</button>
+						  	<input type="button" class="btn btn-default" id="btnEnviarAltaCliente" value="Enviar">
 						  	<button type="reset" class="btn btn-danger">Limpiar</button>
 					</form> 
 
-					<form id="formRegVenta" name="formRegVenta" class="formulario">
+						<form id="formRegVenta" class="formulario">
 						<h3>Registrar venta</h3>
 							<div class="form-group">
 						   		<label>Vehículo</label>
-						   		<select class="form-control" name="selectVentaVehiculo" id="selectVentaVehiculo">
+						   		<select class="form-control" id="selectVentaVehiculo">
 						   		</select>
 						    </div>
 						  	
 						    <div class="form-group">
 						   		<label>Cliente</label>
-						   		<select class="form-control" name="selectVentaCliente" id="selectVentaCliente">
+						   		<select class="form-control" id="selectVentaCliente">
 						   		</select>
 						    </div>
 						  
 						    <div class="form-group">
 						   		<label>Empleado</label>
-						   		<select class="form-control" name="selectVentaEmp" id="selectVentaEmp">
+						   		<select class="form-control" id="selectVentaEmp">
 						   		</select>
 						    </div>
 						    <div class="form-group">
 						   		<label>Observaciones</label>
-						   		<textarea type="text" class="form-control" name="observVentaVehiculo" id="observVentaVehiculo"></textarea>
+						   		<textarea type="text" class="form-control" id="observVentaVehiculo"></textarea>
 						    </div>
 
 						  
-						  	<input type="button" class="btn btn-default" name="btnEnviarCompra" id="btnEnviarCompra" value="Enviar">
+						  	<input type="button" class="btn btn-default" id="btnEnviarCompra" value="Enviar">
 						  	<button type="reset" class="btn btn-danger">Limpiar</button>
 					</form> 
 
-					<form id="formRegCompra" name="formRegCompra" class="formulario">
+					<form id="formRegCompra" class="formulario">
 						<h3>Registrar compra</h3>
 							<div class="form-group">
 						   		<label>Vehículo</label>
-						   		<select class="form-control" id="selectCompraVehiculo" name="selectCompraVehiculo">
+						   		<select class="form-control" id="selectCompraVehiculo">
 						   		</select>
 						    </div>
 						  	
 						    <div class="form-group">
 						   		<label>Importe</label>
-						   		<input type="text" size="5" class="form-control" name="importeCompraVehiculo" id="importeCompraVehiculo">
+						   		<input type="text" size="5" class="form-control" id="importeCompraVehiculo">
 						    </div>
 						    <div class="form-group">
 						   		<label>Fecha</label>
-						   		<input type="text" class="form-control" name="fechaCompraVehiculo" id="fechaCompraVehiculo">
+						   		<input type="text" class="form-control" id="fechaCompraVehiculo">
 						    </div>
 						  	<div class="form-group">
 						   		<label>Proveedor</label>
-						   		<select class="form-control" name="selectCompraProv" id="selectCompraProv">
+						   		<select class="form-control" id="selectCompraProv">
 						   		</select>
 						    </div>
 						    <div class="form-group">
 						   		<label>Empleado</label>
-						   		<select class="form-control" name="selectCompraEmp" id="selectCompraEmp">
+						   		<select class="form-control" id="selectCompraEmp">
 						   		</select>
 						    </div>
 						    <div class="form-group">
 						   		<label>Observaciones</label>
-						   		<textarea type="text" class="form-control" name="observCompraVehiculo" id="observCompraVehiculo"></textarea>
+						   		<textarea type="text" class="form-control" id="observCompraVehiculo"></textarea>
 						    </div>
 
 						  
-						  	<input type="button" class="btn btn-default" name="btnEnviarCompra" id="btnEnviarCompra" value="Enviar">
+						  	<input type="button" class="btn btn-default" id="btnEnviarCompra" value="Enviar">
 						  	<button type="reset" class="btn btn-danger">Limpiar</button>
 					</form> 
 
-					<form name="formRegReparacion" id="formRegReparacion" class="formulario">
+					<form id="formRegReparacion" class="formulario">
 						<h3>Registrar Reparación</h3>
 							<div class="form-group">
 						   		<label>Vehículo</label>
-						   		<select class="form-control" name="selectRepVehiculo" id="selectRepVehiculo">
+						   		<select class="form-control" id="selectRepVehiculo">
 						   		</select>
 						    </div>
 
 						    <div class="form-group">
 						   		<label>Descripción</label>
-						   		<textarea type="text" class="form-control" name="descRepVehiculo" id="descRepVehiculo"></textarea>
+						   		<textarea type="text" class="form-control" id="descRepVehiculo"></textarea>
 						    </div>
 						  	
 						    <div class="form-group">
 						   		<label>Coste</label>
-						   		<input type="text" size="5" class="form-control" name="costeRepVehiculo" id="costeRepVehiculo">
+						   		<input type="text" size="5" class="form-control" id="costeRepVehiculo">
 						    </div>
+					
+						    
+
 						  
-						  	<input type="button" class="btn btn-default" name="btnEnviarCompra" id="btnEnviarCompra" value="Enviar">
+						  	<input type="button" class="btn btn-default" id="btnEnviarCompra" value="Enviar">
 						  	<button type="reset" class="btn btn-danger">Limpiar</button>
 					</form> 
+
+
 
 
 				</div>
