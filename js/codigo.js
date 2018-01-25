@@ -205,6 +205,9 @@ function ocultarFormularios(){
 	document.getElementById("formAltaEmpleado").style.display = "none";
 	document.getElementById("formAltaVeh").style.display = "none";
 	document.getElementById("formAltaCli").style.display = "none";
+	document.getElementById("formRegCompra").style.display = "none";
+	document.getElementById("formRegVenta").style.display = "none";
+	document.getElementById("formRegReparacion").style.display = "none";
 }
 
 var oBtnTipoCoche= document.getElementById("radioCoche");
