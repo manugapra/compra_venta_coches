@@ -45,6 +45,11 @@ function altaProveedor(){
 	
 	ocultarFormularios();
 	var formAltaProv = document.getElementById("formAltaProv");
+	formAltaProv.cifProv.value="";
+	formAltaProv.nomProv.value="";
+	formAltaProv.dirProv.value="";
+	formAltaProv.telProv.value="";
+	formAltaProv.tipoProv.value="";
 	formAltaProv.style.display = "block";
 	formAltaProv.btnEnviarAltaProveedor.addEventListener('click',validarAltaProv,false);
 	
@@ -80,6 +85,11 @@ function altaEmpleado(){
 	
 	ocultarFormularios();
 	var formAltaEmp = document.getElementById("formAltaEmpleado");
+	formAltaEmp.dniEmp.value="";
+	formAltaEmp.nomEmp.value="";
+	formAltaEmp.apeEmp.value="";
+	formAltaEmp.ventasEmp.value="";
+	formAltaEmp.salEmp.value="";
 	formAltaEmp.style.display = "block";
 	formAltaEmp.btnEnviarAltaEmpleado.addEventListener('click',validarAltaEmpleado, false);
 	
@@ -237,7 +247,7 @@ function rellenarCombosCompra(){
 
 	//Combo proveedores
 	if (cvCoches._proveedores.length==0){
-		
+
 		var optionProv = document.createElement("option");
 		var textnode = document.createTextNode("No hay proveedores dados de alta");
 		optionProv.appendChild(textnode);
@@ -245,23 +255,46 @@ function rellenarCombosCompra(){
 		//formRegCompra.appendChild(option);
 		//formRegCompra.selectCompraProv.innerHTML = '<option>No hay proveedores dados de alta</option>';
 	} else {
+		for (var k=0;k<selectCompraProv.length;k++){
+			selectCompraProv.remove(k);
+		}
 		for (var i=0;i<cvCoches._proveedores.length;i++){
 			var optionProv = document.createElement("option");
-		optionProv.setAttribute("value",cvCoches._proveedores[i].cif)
-		var textnode = document.createTextNode( cvCoches._proveedores[i].cif+' - '+cvCoches._proveedores[i].nombre);
-		optionProv.appendChild(textnode);
-		optionProv = selectCompraProv.appendChild(optionProv);
+			optionProv.setAttribute("value",cvCoches._proveedores[i].cif)
+			optionProv.setAttribute("id","comboProv")
+			var textnode = document.createTextNode( cvCoches._proveedores[i].cif+' - '+cvCoches._proveedores[i].nombre);
+			optionProv.appendChild(textnode);
+			optionProv = selectCompraProv.appendChild(optionProv);
 		
 		}
 	}
 
 	//Combo empleados
 	if (cvCoches._empleados.length==0){
-		formRegCompra.selectCompraEmp.innerHTML = '<option>No hay empleados dados de alta</option>';
+
+		var optionEmp = document.createElement("option");
+		var textnode = document.createTextNode("No hay proveedores dados de alta");
+		optionEmp.appendChild(textnode);
+		optionEmp = selectCompraEmp.appendChild(optionEmp);
+
 	} else {
-		formRegCompra.selectCompraEmp.innerHTML = '';
+
+		for (var k=0;k<selectCompraEmp.length;k++){
+			selectCompraEmp.remove(k);
+		}
+
+		
 		for (var i=0;i<cvCoches._empleados.length;i++){
-		formRegCompra.selectCompraEmp.innerHTML += '<option value="'+cvCoches._empleados[i].dni+'">'+cvCoches._empleados[i].dni+' - '+cvCoches._empleados[i].nombre+' '+cvCoches._empleados[i].apellidos+'</option>';
+			formRegCompra.selectCompraEmp.innerHTML += '<option value="'+cvCoches._empleados[i].dni+'">'+cvCoches._empleados[i].dni+' - '+cvCoches._empleados[i].nombre+' '+cvCoches._empleados[i].apellidos+'</option>';
+
+			var optionEmp = document.createElement("option");
+			optionEmp.setAttribute("value",cvCoches._empleados[i].dni)
+			optionEmp.setAttribute("id","comboEmp")
+			var textnode = document.createTextNode(cvCoches._empleados[i].dni+' - '+cvCoches._empleados[i].nombre+' '+cvCoches._empleados[i].apellidos);
+			optionEmp.appendChild(textnode);
+			optionEmp = selectCompraEmp.appendChild(optionEmp);
+
+
 
 		
 		}
