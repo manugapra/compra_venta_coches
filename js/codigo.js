@@ -55,13 +55,11 @@ function altaProveedor(){
 	
 	ocultarFormularios();
 	var formAltaProv = document.getElementById("formAltaProv");
-	formAltaProv.cifProv.value="";
-	formAltaProv.nomProv.value="";
-	formAltaProv.dirProv.value="";
-	formAltaProv.telProv.value="";
-	formAltaProv.tipoProv.value="";
+	formAltaProv.reset();
 	formAltaProv.style.display = "block";
-	
+	var inputsAltaProv = formAltaProv.querySelectorAll('input');
+	for (var i = 0; i<inputsAltaProv.length; i++)
+		inputsAltaProv[i].classList.remove('error');	
 	
 }
 
@@ -70,23 +68,24 @@ function enviarAltaProveedor(){
 	var formAltaProv= document.getElementById("formAltaProv");
 	var sMensaje = "";
 		
-	if(formAltaProv.cifProv.value=="" || formAltaProv.nomProv.value=="" || formAltaProv.dirProv.value=="" || 
+	/*if(formAltaProv.cifProv.value=="" || formAltaProv.nomProv.value=="" || formAltaProv.dirProv.value=="" || 
 		formAltaProv.telProv.value=="" || formAltaProv.tipoProv.value==""){
 		sMensaje= "Debe Rellenar Todos los Campos.";				
-	} else{
+	} else{*/
 		var cifProv= formAltaProv.cifProv.value.trim();
 		var nomProv= formAltaProv.nomProv.value.trim();
 		var dirProv= formAltaProv.dirProv.value.trim();
 		var telProv= formAltaProv.telProv.value.trim();
-		var tipoProv= formAltaProv.tipoProv.value.trim();
+		//var tipoProv= formAltaProv.tipoProv.value.trim();
 		
-		var oProveedor= new Proveedor(cifProv,nomProv,dirProv,telProv,tipoProv);
+		var oProveedor= new Proveedor(cifProv,nomProv,dirProv,telProv);
 		
 		sMensaje = cvCoches.altaProveedor(oProveedor);
         altaProveedor();
-	}
+	//}
 
 	alert(sMensaje);
+	ocultarFormularios();
 	}
 
 }
@@ -95,12 +94,11 @@ function altaEmpleado(){
 	
 	ocultarFormularios();
 	var formAltaEmp = document.getElementById("formAltaEmpleado");
-	formAltaEmp.dniEmp.value="";
-	formAltaEmp.nomEmp.value="";
-	formAltaEmp.apeEmp.value="";
-	formAltaEmp.ventasEmp.value="";
-	formAltaEmp.salEmp.value="";
+	formAltaEmp.reset();
 	formAltaEmp.style.display = "block";
+	var inputsAltaEmp = formAltaEmp.querySelectorAll('input');
+	for (var i = 0; i<inputsAltaEmp.length; i++)
+		inputsAltaEmp[i].classList.remove('error');
 	
 	
 }
@@ -110,10 +108,10 @@ function enviarAltaEmpleado(){
 		var formAltaEmpleado= document.getElementById("formAltaEmpleado");
 		var sMensaje = "";
 			
-		if(formAltaEmpleado.dniEmp.value=="" || formAltaEmpleado.nomEmp.value=="" || formAltaEmpleado.apeEmp.value=="" || 
+		/*if(formAltaEmpleado.dniEmp.value=="" || formAltaEmpleado.nomEmp.value=="" || formAltaEmpleado.apeEmp.value=="" || 
 			formAltaEmpleado.ventasEmp.value=="" || formAltaEmpleado.salEmp.value==""){
 			sMensaje= "Debe Rellenar Todos los Campos.";				
-		} else{
+		} else{*/
 			var dniEmp= formAltaEmpleado.dniEmp.value.trim();
 			var nomEmp= formAltaEmpleado.nomEmp.value.trim();
 			var apeEmp= formAltaEmpleado.apeEmp.value.trim();
@@ -124,9 +122,10 @@ function enviarAltaEmpleado(){
 			
 			sMensaje = cvCoches.altaEmpleado(oEmpleado);
 	        altaEmpleado();
-		}
+		//}
 
 		alert(sMensaje);
+		ocultarFormularios();
 	}
 
 }
@@ -135,8 +134,13 @@ function altaVehiculo(){
 	
 	ocultarFormularios();
 	var formAltaVeh = document.getElementById("formAltaVeh");
+	formAltaVeh.reset();
 	formAltaVeh.style.display = "block";
 	formAltaVeh.btnEnviarAltaVehiculo.addEventListener('click',validarAltaVeh, false);
+	var inputsAltaVeh = formAltaVeh.querySelectorAll('input');
+	for (var i = 0; i<inputsAltaVeh.length; i++)
+		inputsAltaVeh[i].classList.remove('error');
+	formAltaVeh.querySelector('.radio').classList.remove('error');
 	
 }
 
@@ -150,8 +154,12 @@ function altaCliente(){
 	
 	ocultarFormularios();
 	var formAltaCli = document.getElementById("formAltaCli");
+	formAltaCli.reset();
 	formAltaCli.style.display = "block";
-	formAltaCli.btnEnviarAltaCliente.addEventListener('click',validarAltaCli, false);
+	//formAltaCli.btnEnviarAltaCliente.addEventListener('click',validarAltaCli, false);
+	var inputsAltaCli = formAltaCli.querySelectorAll('input');
+	for (var i = 0; i<inputsAltaCli.length; i++)
+		inputsAltaCli[i].classList.remove('error');
 	
 }
 
@@ -159,11 +167,12 @@ function enviarAltaCliente(){
 
 	var formAltaCli= document.getElementById("formAltaCli");
 	var sMensaje = "";
-		
-	if(formAltaCli.dniCliente.value=="" || formAltaCli.nomCliente.value=="" || formAltaCli.apCliente.value=="" || 
+	if (validarAltaCli()) 
+	{	
+	/*if(formAltaCli.dniCliente.value=="" || formAltaCli.nomCliente.value=="" || formAltaCli.apCliente.value=="" || 
 		formAltaCli.telCliente.value==""){
 		sMensaje= "Debe Rellenar Todos los Campos.";				
-	} else{
+	} else{*/
 		var dniCliente= formAltaCli.dniCliente.value.trim();
 		var nomCliente= formAltaCli.nomCliente.value.trim();
 		var apCliente= formAltaCli.apCliente.value.trim();
@@ -173,19 +182,18 @@ function enviarAltaCliente(){
 		
 		sMensaje = cvCoches.altaCliente(oCliente);
         altaCliente();
-	}
+	//}
 
 	alert(sMensaje);
-
+	ocultarFormularios();
+	}
 }
 
 function mostrarRegistrarCompra(){
 	ocultarFormularios();
 	var formRegCompra = document.getElementById("formRegCompra");
 
-	formRegCompra.importeCompraVehiculo.value="";
-	formRegCompra.fechaCompraVehiculo.value="";
-	formRegCompra.observCompraVehiculo.value="";
+	formRegCompra.reset();
 	rellenarCombosCompra();
 	formRegCompra.style.display="block";
 
@@ -201,7 +209,7 @@ function mostrarRegistrarVenta(){
 	ocultarFormularios();
 	var formRegVenta = document.getElementById("formRegVenta");
 
-	formRegVenta.observVentaVehiculo.value="";
+	formRegVenta.reset();
 	rellenarCombosVenta();
 	formRegVenta.style.display="block";
 }
@@ -520,14 +528,14 @@ function validarAltaProv()
 	//campo nombre
 	var sNombre = formAltaProv.nomProv.value.trim();
 	formAltaProv.nomProv.value = formAltaProv.nomProv.value.trim();
-	var oExpReg = /^[a-zA-Z\s]{6,40}$/i;
+	var oExpReg = /^[a-zA-Z\s]{1,40}$/i;
 
 	if (oExpReg.test(sNombre) == false)
 	{
 		formAltaProv.nomProv.classList.add("error");
 		formAltaProv.nomProv.focus();
 		bValido = false;
-		sError += "El nombre solo admite caracteres alfabéticos y entre 6 y 40 caracteres \n"; 
+		sError += "Escriba un nombre \n"; 
 	} else {
 		formAltaProv.nomProv.classList.remove("error");
 	}
@@ -535,13 +543,14 @@ function validarAltaProv()
 	//campo direccion
 	var sDireccion = formAltaProv.dirProv.value.trim();
 	formAltaProv.dirProv.value = formAltaProv.dirProv.value.trim();
+	oExpReg = /^[\w\s]{1,40}$/i;
 
-	if (sDireccion == '')
+	if (oExpReg.test(sDireccion) == false)
 	{
 		formAltaProv.dirProv.classList.add("error");
 		formAltaProv.dirProv.focus();
 		bValido = false;
-		sError += "Debe escribir una direccion \n"; 
+		sError += "Debe escribir una direccion. Ejemplo: Calle Arroz 6 \n"; 
 	} else {
 		formAltaProv.dirProv.classList.remove("error");
 	}
@@ -560,21 +569,6 @@ function validarAltaProv()
 		sError += "El telefono tiene que empezar por 6 o 7 y tiene que tener 9 cifras \n"; 
 	} else {
 		formAltaProv.telProv.classList.remove("error");
-	}
-
-	//campo tipo
-	var sTipo = formAltaProv.tipoProv.value.trim();
-	formAltaProv.tipoProv.value = formAltaProv.tipoProv.value.trim();
-    //???????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
-	if (sTipo=='') 
-	{
-		formAltaProv.tipoProv.classList.add('error');
-		formAltaProv.tipoProv.focus();
-		bValido = false;
-		sError += 'Debe escribir un tipo';
-	}
-	else{
-		formAltaProv.tipoProv.classList.remove('error');
 	}
 
 	if (bValido == false) 
@@ -612,14 +606,14 @@ function validarAltaEmpleado(oEvento)
 	//campo nombre
 	var sNombre = formAltaEmpleado.nomEmp.value.trim();
 	formAltaEmpleado.nomEmp.value = formAltaEmpleado.nomEmp.value.trim();
-	var oExpReg = /^[a-zA-Z\s]{6,40}$/i;
+	var oExpReg = /^[a-zA-Z\s]{1,40}$/i;
 
 	if (oExpReg.test(sNombre) == false)
 	{
 		formAltaEmpleado.nomEmp.classList.add("error");
 		formAltaEmpleado.nomEmp.focus();
 		bValido = false;
-		sError += "El nombre solo admite caracteres alfabéticos y entre 6 y 40 caracteres \n"; 
+		sError += "Escriba un nombre \n"; 
 	} else {
 		formAltaEmpleado.nomEmp.classList.remove("error");
 	}
@@ -627,14 +621,14 @@ function validarAltaEmpleado(oEvento)
 	//campo apellido
 	var sApellidos = formAltaEmpleado.apeEmp.value.trim();
 	formAltaEmpleado.apeEmp.value = formAltaEmpleado.apeEmp.value.trim();
-	var oExpReg = /^[a-zA-Z\s]{6,40}$/i;
+	var oExpReg = /^[a-zA-Z\s]{1,40}$/i;
 
 	if (oExpReg.test(sNombre) == false)
 	{
 		formAltaEmpleado.apeEmp.classList.add("error");
 		formAltaEmpleado.apeEmp.focus();
 		bValido = false;
-		sError += "Los apellidos solo admite caracteres alfabéticos y entre 6 y 40 caracteres \n"; 
+		sError += "Escriba los apellidos \n"; 
 	} else {
 		formAltaEmpleado.apeEmp.classList.remove("error");
 	}
@@ -649,7 +643,7 @@ function validarAltaEmpleado(oEvento)
 		formAltaEmpleado.ventasEmp.classList.add("error");
 		formAltaEmpleado.ventasEmp.focus();
 		bValido = false;
-		sError += "Solo puede introducir digitos \n"; 
+		sError += "Introduzca numero de ventas \n"; 
 	} else {
 		formAltaEmpleado.ventasEmp.classList.remove("error");
 	}
@@ -664,7 +658,7 @@ function validarAltaEmpleado(oEvento)
 		formAltaEmpleado.salEmp.classList.add("error");
 		formAltaEmpleado.salEmp.focus();
 		bValido = false;
-		sError += "Solo puede introducir digitos \n"; 
+		sError += "Introduzca el salario \n"; 
 	} else {
 		formAltaEmpleado.salEmp.classList.remove("error");
 	}
@@ -673,7 +667,7 @@ function validarAltaEmpleado(oEvento)
 	if (bValido == false) 
 	{
 		alert(sError);
-		oE.preventDefault();
+		//oE.preventDefault();
 		return false;
 	} else {
 		return true;
@@ -697,7 +691,7 @@ function validarAltaVeh(oEvento)
 		formAltaVeh.matVehiculo.classList.add('error');
 		formAltaVeh.matVehiculo.focus();
 		bValido = false;
-		sError = 'Matricula incorrecta. Debe ser 4 numeros y 3 letras. Ejemplo : 2341KJD \n';
+		sError = 'Matricula incorrecta. Debe ser 4 numeros y 3 letras. Esta basado en el formato actual (Empezando por la letra B). Ejemplo : 2341KJD \n';
 	}
 	else
 		formAltaVeh.matVehiculo.classList.remove('error');
@@ -712,7 +706,7 @@ function validarAltaVeh(oEvento)
 		formAltaVeh.marcaVehiculo.classList.add('error');
 		formAltaVeh.marcaVehiculo.focus();
 		bValido = false;
-		sError += 'Introduzca una marca entre 2 y 40 caracteres \n';
+		sError += 'Introduzca una marca \n';
 	}
 	else
 		formAltaVeh.marcaVehiculo.classList.remove('error');
@@ -727,7 +721,7 @@ function validarAltaVeh(oEvento)
 		formAltaVeh.modVehiculo.classList.add('error');
 		formAltaVeh.modVehiculo.focus();
 		bValido = false;
-		sError += 'Introduzca un modelo entre 2 y 40 caracteres \n';
+		sError += 'Introduzca un modelo \n';
 	}
 	else
 		formAltaVeh.modVehiculo.classList.remove('error');
@@ -935,14 +929,14 @@ function validarAltaVeh(oEvento)
 	//campo nombre
 	var sNombre = formAltaCli.nomCliente.value.trim();
 	formAltaCli.nomCliente.value = formAltaCli.nomCliente.value.trim();
-	var oExpReg = /^[a-zA-Z\s]{6,40}$/;
+	var oExpReg = /^[a-zA-Z\s]{1,40}$/;
 
 	if (oExpReg.test(sNombre)==false) 
 	{
 		formAltaCli.nomCliente.classList.add('error');
 		formAltaCli.nomCliente.focus();
 		bValido = false;
-		sError += 'El nombre tiene que tener entre 6 y 40 caracteres\n';
+		sError += 'Escriba un nombre \n';
 	}
 	else
 		formAltaCli.nomCliente.classList.remove('error');
@@ -957,7 +951,7 @@ function validarAltaVeh(oEvento)
 		formAltaCli.apCliente.classList.add('error');
 		formAltaCli.apCliente.focus();
 		bValido = false;
-		sError += 'Los apellidos tienen que tener entre 6 y 40 caracteres\n';
+		sError += 'Escriba los apellidos \n';
 	}
 	else
 		formAltaCli.apCliente.classList.remove('error');
@@ -981,8 +975,11 @@ function validarAltaVeh(oEvento)
 	if (bValido == false) 
 	{
 		alert(sError);
-		oE.preventDefault();
-	}	
+		//oE.preventDefault();
+		return false;
+	}
+	else
+		return true;	
  }
 
 /*plantilla validaciones

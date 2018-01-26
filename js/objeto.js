@@ -69,12 +69,11 @@ class CVCoches {
 
 }
 
-function Proveedor(cif, nombre, direccion, telefono, tipo){
+function Proveedor(cif, nombre, direccion, telefono){
 	this.cif= cif;
 	this.nombre= nombre;
 	this.direccion= direccion;
 	this.telefono = telefono;
-	this.tipo = tipo;
 }
 
 Proveedor.prototype.toHTMLRow = function(){

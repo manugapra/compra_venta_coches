@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- datos de proveedores -->
+<proveedores>
+	<proveedor>
+		<cif>A12345678</cif>
+		<nombre>Pepe Garcia</nombre>
+		<direccion>Calle Arroz 5</direccion>
+		<telefono>678945123</telefono>
+		<tipo></tipo>
+	</proveedor>
+	<proveedor>
+		<cif>B23145678</cif>
+		<nombre>Paco Perez</nombre>
+		<direccion>Calle Tomares 65</direccion>
+		<telefono>754689123</telefono>
+		<tipo></tipo>
+	</proveedor>
+	<proveedor>
+		<cif>C78456123</cif>
+		<nombre>Ana Maria Zapatero</nombre>
+		<direccion>Calle Dos Hermanas 40</direccion>
+		<telefono>654781239</telefono>
+		<tipo></tipo>
+	</proveedor>
+</proveedores>
+
+<!-- datos de empleados -->
+<empleados>
+	<empleado>
+		<dni>12345678D</dni>
+		<nombre>Paula</nombre>
+		<apellidos>Abad Baena</apellidos>
+		<nVentas>10</nVentas>
+		<salario>1200</salario>
+	</empleado>
+	<empleado>
+		<dni>21354678F</dni>
+		<nombre>Marcos</nombre>
+		<apellidos>Barrio Guillen</apellidos>
+		<nVentas>7</nVentas>
+		<salario>1100</salario>
+	</empleado>
+	<empleado>
+		<dni>32145678G</dni>
+		<nombre>Marina</nombre>
+		<apellidos>Perez Manso</apellidos>
+		<nVentas>8</nVentas>
+		<salario>1150</salario>
+	</empleado>
+</empleados>
+
+<!-- datos de vehiculos -->
+<vehiculos>
+	<vehiculo>
+		<matricula>1234GCD</matricula>
+		<marca>Mercedes</marca>
+		<modelo>Clase A</modelo>
+		<tasacion>12000</tasacion>
+		<combustible>diesel</combustible>
+		<plazas>5</plazas>
+	</vehiculo>
+	<vehiculo>
+		<matricula>5894JDF</matricula>
+		<marca>Seat</marca>
+		<modelo>Toledo</modelo>
+		<tasacion>5500</tasacion>
+		<combustible>diesel</combustible>
+		<plazas>5</plazas>
+	</vehiculo>
+	<vehiculo>
+		<matricula>2879DTG</matricula>
+		<marca>Smart</marca>
+		<modelo>Fortwo</modelo>
+		<tasacion>3850</tasacion>
+		<combustible>Gasolina</combustible>
+		<plazas>2</plazas>
+	</vehiculo>
+</vehiculos>
+
+<!-- datos de empleados -->
+<clientes>
+	<cliente>
+		<dni>98745612Z</dni>
+		<nombre>Luis</nombre>
+		<apellidos>Salcedo Ocaña</apellidos>
+		<telefono>745896123</telefono>
+	</cliente>
+	<cliente>
+		<dni>95415612S</dni>
+		<nombre>Andrea</nombre>
+		<apellidos>Heredia Raya</apellidos>
+		<telefono>613254789</telefono>
+	</cliente>
+	<cliente>
+		<dni>32658741V</dni>
+		<nombre>Kevin</nombre>
+		<apellidos>Zapata Chico</apellidos>
+		<telefono>698754123</telefono>
+	</cliente>
+</clientes>
