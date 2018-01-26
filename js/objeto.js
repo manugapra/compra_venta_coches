@@ -77,7 +77,7 @@ function Proveedor(cif, nombre, direccion, telefono, tipo){
 	this.tipo = tipo;
 }
 
-Proveedor.prototype.toHTMLRow= function(){
+Proveedor.prototype.toHTMLRow = function(){
 	return "<td>"+this.cif+"</td>"+
 		   "<td>"+this.nombre+"</td>"+
 		   "<td>"+this.direccion+"</td>"+
