@@ -28,7 +28,7 @@ class CVCoches {
 			
 		return sMensaje;
 	}
-
+	//ALTA EMPLEADO
 	altaEmpleado(oEmpleado){
 		var bEncontrado= false;
 		var sMensaje = "";
@@ -47,7 +47,7 @@ class CVCoches {
 			
 		return sMensaje;
 	}
-
+	//ALTA CLIENTE
 	altaCliente(oCliente){
 		var bEncontrado= false;
 		var sMensaje = "";
@@ -62,6 +62,25 @@ class CVCoches {
 		}else{
 			this._clientes.push(oCliente);
 			sMensaje = "Cliente dado de alta";
+		}
+			
+		return sMensaje;
+	}
+	//ALTA VEHICULO
+	altaVehiculo(oVehiculo){
+		var bEncontrado= false;
+		var sMensaje = "";
+		
+		for(var i=0; i<this._vehiculos.length && bEncontrado==false; i++){
+			if(this._vehiculos[i].matricula==oVehiculo.matricula && this._vehiculos[i] instanceof Vehiculo){
+				bEncontrado= true;
+			}
+		}
+		if (bEncontrado == true) {
+			sMensaje = "Vehiculo dado de alta anteriormente";
+		}else{
+			this._vehiculos.push(oVehiculo);
+			sMensaje = "Vehiculo dado de alta";
 		}
 			
 		return sMensaje;

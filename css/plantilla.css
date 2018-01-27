@@ -11,3 +11,7 @@
 .listas{
 	display:none;
 }
+
+textarea{
+	resize: none;
+}

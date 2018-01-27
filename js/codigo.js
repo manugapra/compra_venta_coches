@@ -81,7 +81,7 @@ function enviarAltaProveedor(){
 		var oProveedor= new Proveedor(cifProv,nomProv,dirProv,telProv);
 		
 		sMensaje = cvCoches.altaProveedor(oProveedor);
-        altaProveedor();
+        //altaProveedor();
 	//}
 
 	alert(sMensaje);
@@ -121,7 +121,7 @@ function enviarAltaEmpleado(){
 			var oEmpleado= new Empleado(dniEmp,nomEmp,apeEmp,ventasEmp,salEmp);
 			
 			sMensaje = cvCoches.altaEmpleado(oEmpleado);
-	        altaEmpleado();
+	        //altaEmpleado();
 		//}
 
 		alert(sMensaje);
@@ -136,7 +136,7 @@ function altaVehiculo(){
 	var formAltaVeh = document.getElementById("formAltaVeh");
 	formAltaVeh.reset();
 	formAltaVeh.style.display = "block";
-	formAltaVeh.btnEnviarAltaVehiculo.addEventListener('click',validarAltaVeh, false);
+	//formAltaVeh.btnEnviarAltaVehiculo.addEventListener('click',validarAltaVeh, false);
 	var inputsAltaVeh = formAltaVeh.querySelectorAll('input');
 	for (var i = 0; i<inputsAltaVeh.length; i++)
 		inputsAltaVeh[i].classList.remove('error');
@@ -144,8 +144,51 @@ function altaVehiculo(){
 	
 }
 
-function enviarAltaVehiculo(){
+function enviarAltaVehiculo()
+{
+	if(validarAltaVeh())
+	{
+		var formAltaVeh = document.getElementById("formAltaVeh");
+		var sMensaje = "";
+			
+		/*if(formAltaEmpleado.dniEmp.value=="" || formAltaEmpleado.nomEmp.value=="" || formAltaEmpleado.apeEmp.value=="" || 
+			formAltaEmpleado.ventasEmp.value=="" || formAltaEmpleado.salEmp.value==""){
+			sMensaje= "Debe Rellenar Todos los Campos.";				
+		} else{*/
+			var matVehiculo = formAltaVeh.matVehiculo.value.trim();
+			var marcaVehiculo = formAltaVeh.marcaVehiculo.value.trim();
+			var modVehiculo = formAltaVeh.modVehiculo.value.trim();
+			var tasVehiculo = formAltaVeh.tasVehiculo.value.trim();
+			var combVehiculo = formAltaVeh.combVehiculo.value.trim();
+			var plazasVehiculo = formAltaVeh.plazasVehiculo.value.trim();
+			var tipoVehiculo = formAltaVeh.tipoVehiculo.value.trim();
 
+			var oVehiculo = new Vehiculo(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo);
+			if (tipoVehiculo=='coche') 
+			{
+				var nPuertasCoche = formAltaVeh.nPuertasCoche.value.trim();
+				var tapiceriaCoche = formAltaVeh.tapiceriaCoche.value.trim();
+				var tpCoche = formAltaVeh.tpCoche.value.trim();
+
+				var oCoche = new Coche(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,nPuertasCoche,tapiceriaCoche,tpCoche);
+
+			}
+			else
+			{
+				var cargaCamion = formAltaVeh.cargaCamion.value.trim();
+				var tipoCargaCamion = formAltaVeh.tipoCargaCamion.value.trim();
+				var capCombCamion = formAltaVeh.capCombCamion.value.trim();
+
+				var oCamion = new Camion(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,cargaCamion,tipoCargaCamion,capCombCamion);
+			}
+			
+			sMensaje = cvCoches.altaVehiculo(oVehiculo);
+	        //altaEmpleado();
+		//}
+
+		alert(sMensaje);
+		ocultarFormularios();
+	}
 
 
 }
@@ -164,11 +207,12 @@ function altaCliente(){
 }
 
 function enviarAltaCliente(){
+if (validarAltaCli()) 
+{
 
 	var formAltaCli= document.getElementById("formAltaCli");
 	var sMensaje = "";
-	if (validarAltaCli()) 
-	{	
+		
 	/*if(formAltaCli.dniCliente.value=="" || formAltaCli.nomCliente.value=="" || formAltaCli.apCliente.value=="" || 
 		formAltaCli.telCliente.value==""){
 		sMensaje= "Debe Rellenar Todos los Campos.";				
@@ -177,11 +221,13 @@ function enviarAltaCliente(){
 		var nomCliente= formAltaCli.nomCliente.value.trim();
 		var apCliente= formAltaCli.apCliente.value.trim();
 		var telCliente= formAltaCli.telCliente.value.trim();
+
+		//console.log(dniCliente+' '+nomCliente+' '+apCliente+' '+telCliente);
 		
-		var oCLiente= new Cliente(dniCliente,nomCliente,apCliente,telCliente);
+		var oCliente = new Cliente(dniCliente,nomCliente,apCliente,telCliente);
 		
 		sMensaje = cvCoches.altaCliente(oCliente);
-        altaCliente();
+        //altaCliente();
 	//}
 
 	alert(sMensaje);
@@ -901,8 +947,11 @@ function validarAltaVeh(oEvento)
 	if (bValido == false) 
 	{
 		alert(sError);
-		oE.preventDefault();
-	}		
+		//oE.preventDefault();
+		return false;
+	}
+	else
+		return true;		
 }
 
  function validarAltaCli(oEvento)
