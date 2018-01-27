@@ -86,6 +86,13 @@ class CVCoches {
 		return sMensaje;
 	}
 
+	//ALTA COMPRA
+	altaCompra(oCompra)
+	{
+		var bEncontrado = false;
+		var sMensaje = '';
+	}
+
 }
 
 function Proveedor(cif, nombre, direccion, telefono){
