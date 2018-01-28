@@ -80,13 +80,7 @@ class CVCoches {
 			sMensaje = "Vehiculo dado de alta anteriormente";
 		}else{
 			this._vehiculos.push(oVehiculo);
-			if (oVehiculo.tipoVehiculo=='coche') 
-			{
-				sMensaje = "Coche dado de alta";
-			}
-			else
-				sMensaje = "Camion dado de alta";
-			
+			sMensaje = "Vehiculo dado de alta";
 		}
 			
 		return sMensaje;
@@ -97,26 +91,9 @@ class CVCoches {
 	{
 		var bEncontrado = false;
 		var sMensaje = '';
-
-		for(var i=0; i<this._compras.length && bEncontrado==false; i++){
-			if(this._compras[i].oVehiculo==oCompra.oVehiculo && this._compras[i] instanceof Compra){
-				bEncontrado= true;
-			}
-		}
-		if (bEncontrado==true) 
-			sMensaje = 'Compra realizada anteriormente';
-		else
-		{
-			this._compras.push(oCompra);
-			sMensaje = 'Compra realizada';
-		}
-		return sMensaje;
 	}
 
-
 }
-
-
 
 function Proveedor(cif, nombre, direccion, telefono){
 	this.cif= cif;
@@ -217,12 +194,11 @@ Vehiculo.prototype.toHTMLRow= function(){
 		   "<td>"+this.plazas+"</td>";
 }
 
-function Coche(matricula, marca, modelo, tasacion, combustible, plazas, numPuertas, tapiceria, tipoCoche,tipoVehiculo){
+function Coche(matricula, marca, modelo, tasacion, combustible, plazas, numPuertas, tapiceria, tipoCoche){
 	Vehiculo.call(this, matricula, marca, modelo, tasacion, combustible, plazas);
 	this.numPuertas= numPuertas;
 	this.tapiceria = tapiceria;
 	this.tipoCoche = tipoCoche;
-	this.tipoVehiculo = tipoVehiculo;
 }
 
 Coche.prototype= Object.create(Vehiculo.prototype);
@@ -240,12 +216,11 @@ Coche.prototype.toHTMLRow= function(){
 		   "<td>"+this.tipoCoche+"</td>";
 }
 
-function Camion(matricula, marca, modelo, tasacion, combustible, plazas, cargaMaxima, tipoCarga, capacidadCombustible,tipoVehiculo){
+function Camion(matricula, marca, modelo, tasacion, combustible, plazas, cargaMaxima, tipoCarga, capacidadCombustible){
 	Vehiculo.call(this, matricula, marca, modelo, tasacion, combustible, plazas);
 	this.cargaMaxima= cargaMaxima;
 	this.tipoCarga= tipoCarga;
 	this.capacidadCombustible= capacidadCombustible;
-	this.tipoVehiculo = tipoVehiculo;
 }
 
 Camion.prototype= Object.create(Vehiculo.prototype);

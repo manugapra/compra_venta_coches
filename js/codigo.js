@@ -57,7 +57,11 @@ oBtnEnviarReparacion.addEventListener("click", enviarReparacion, false);
 var oBtnListarProv = document.getElementById("btnListarProveedores");
 oBtnListarProv.addEventListener("click", mostrarListaProv, false);
 
+var oBtnListarCli = document.getElementById("btnListarClientes");
+oBtnListarCli.addEventListener("click", mostrarListaCli, false);
 
+var oBtnListarVentas = document.getElementById("btnListarVentas");
+oBtnListarVentas.addEventListener("click", mostrarListaVentas, false);
 
 
 function altaProveedor(){
@@ -179,8 +183,7 @@ function enviarAltaVehiculo()
 				var tapiceriaCoche = formAltaVeh.tapiceriaCoche.value.trim();
 				var tpCoche = formAltaVeh.tpCoche.value.trim();
 
-				var oCoche = new Coche(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,nPuertasCoche,tapiceriaCoche,tpCoche,tipoVehiculo);
-				sMensaje = cvCoches.altaVehiculo(oCoche);
+				var oCoche = new Coche(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,nPuertasCoche,tapiceriaCoche,tpCoche);
 
 			}
 			else
@@ -189,11 +192,10 @@ function enviarAltaVehiculo()
 				var tipoCargaCamion = formAltaVeh.tipoCargaCamion.value.trim();
 				var capCombCamion = formAltaVeh.capCombCamion.value.trim();
 
-				var oCamion = new Camion(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,cargaCamion,tipoCargaCamion,capCombCamion,tipoVehiculo);
-				sMensaje = cvCoches.altaVehiculo(oCamion);
+				var oCamion = new Camion(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,cargaCamion,tipoCargaCamion,capCombCamion);
 			}
 			
-			
+			sMensaje = cvCoches.altaVehiculo(oVehiculo);
 	        //altaEmpleado();
 		//}
 
@@ -341,16 +343,20 @@ function enviarReparacion()
 function mostrarListaProv(){
 	ocultarFormularios();
 	var oDivListados = document.getElementById("listas");
-	var oTablaAntigua = document.getElementById("tabla");
-	if (oTablaAntigua !== null){
-		oDivListados.removeChild(oTablaAntigua);
+	
+	if (cvCoches._proveedores.length!==0){
+	if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
 	}
 	oDivListados.style.display = "block";
-	//oDivListados.innerHTML = cvCoches._proveedores[0].toHTMLRow();
+
 
 	var tabla = document.createElement("table");
 	tabla.setAttribute("border","1");
 	tabla.setAttribute("id","tabla");
+	tabla.setAttribute("class","table table-hover");
 	
 	var thCif = document.createElement("th");
 	var thNom = document.createElement("th");
@@ -409,9 +415,214 @@ function mostrarListaProv(){
 	
 	}
 	oDivListados.appendChild(tabla);
+	}
+	else {
+		if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+			}
+			var p = document.createElement("p");
+			p.setAttribute("id","mError")
+			var textnode = document.createTextNode("No hay datos disponibles");
+			p.appendChild(textnode);
+			oDivListados.appendChild(p);
+			oDivListados.style.display = "block";
+		
+
+	}
 
 
 }
+
+function mostrarListaCli(){
+	ocultarFormularios();
+	var oDivListados = document.getElementById("listas");
+	
+	if (cvCoches._clientes.length!==0){
+		
+	if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+			}
+	oDivListados.style.display = "block";
+	//oDivListados.innerHTML = cvCoches._proveedores[0].toHTMLRow();
+
+	var tabla = document.createElement("table");
+	tabla.setAttribute("border","1");
+	
+	tabla.setAttribute("id","tabla");
+	tabla.setAttribute("class","table table-hover");
+	
+	var thDni = document.createElement("th");
+	var thNom = document.createElement("th");
+	var thTel = document.createElement("th");
+	
+	
+
+
+
+	var textnode = document.createTextNode("DNI");
+	thDni.appendChild(textnode);
+	tabla.appendChild(thDni);
+
+
+	var textnode = document.createTextNode("Nombre");
+	thNom.appendChild(textnode);
+	tabla.appendChild(thNom);
+
+	var textnode = document.createTextNode("Teléfono");
+	thTel.appendChild(textnode);
+	tabla.appendChild(thTel);
+
+
+
+	for(var i=0;i<cvCoches._clientes.length;i++){
+
+	var tr = document.createElement("tr");
+	var tdDni = document.createElement("td");
+	var tdNom = document.createElement("td");
+	var tdTel = document.createElement("td");
+	
+	textnode = document.createTextNode(cvCoches._clientes[i].dni);
+	tdDni.appendChild(textnode);
+	
+	textnode = document.createTextNode(cvCoches._clientes[i].nombre+' '+cvCoches._clientes[i].apellidos);
+	tdNom.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._clientes[i].telefono);
+	tdTel.appendChild(textnode);
+
+	tr.appendChild(tdDni);
+	tr.appendChild(tdNom);
+	tr.appendChild(tdTel);
+	
+	tabla.appendChild(tr);
+	
+	}
+	oDivListados.appendChild(tabla);
+	}
+	else {
+		
+		
+			if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+			}
+		
+			var p = document.createElement("p");
+			p.setAttribute("id","mError")
+			var textnode = document.createTextNode("No hay datos disponibles");
+			p.appendChild(textnode);
+			oDivListados.appendChild(p);
+			oDivListados.style.display = "block";
+		
+
+	}
+
+}
+
+function mostrarListaVentas(){
+	ocultarFormularios();
+	var oDivListados = document.getElementById("listas");
+	
+	if (cvCoches._ventas.length!==0){
+		
+	if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+			}
+	oDivListados.style.display = "block";
+	//oDivListados.innerHTML = cvCoches._proveedores[0].toHTMLRow();
+
+	var tabla = document.createElement("table");
+	tabla.setAttribute("border","1");
+	
+	tabla.setAttribute("id","tabla");
+	tabla.setAttribute("class","table table-hover");
+	
+	var thVeh = document.createElement("th");
+	var thCli = document.createElement("th");
+	var thEmp = document.createElement("th");
+	var thObs = document.createElement("th");
+	
+
+
+
+	var textnode = document.createTextNode("Vehiculo");
+	thVeh.appendChild(textnode);
+	tabla.appendChild(thVeh);
+
+
+	var textnode = document.createTextNode("Cliente");
+	thCli.appendChild(textnode);
+	tabla.appendChild(thCli);
+
+	var textnode = document.createTextNode("Empleado");
+	thEmp.appendChild(textnode);
+	tabla.appendChild(thEmp);
+
+	var textnode = document.createTextNode("Observaciones");
+	thObs.appendChild(textnode);
+	tabla.appendChild(thObs);
+
+
+
+	for(var i=0;i<cvCoches._ventas.length;i++){
+
+	var tr = document.createElement("tr");
+	var tdVeh = document.createElement("td");
+	var tdCli = document.createElement("td");
+	var tdEmp = document.createElement("td");
+	var tdObs = document.createElement("td");
+	
+	textnode = document.createTextNode(cvCoches._ventas[i].oVehiculo.matricula+' - '+cvCoches._ventas[i].oVehiculo.marca+' '+cvCoches._ventas[i].oVehiculo.modelo);
+	tdVeh.appendChild(textnode);
+	
+	textnode = document.createTextNode(cvCoches._ventas[i].oCliente.dni+' - '+cvCoches._ventas[i].oCliente.nombre+' '+cvCoches._ventas[i].oCliente.apellidos);
+	tdCli.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._ventas[i].oEmpleado.dni+ ' - '+cvCoches._ventas[i].oEmpleado.nombre+' '+cvCoches._ventas[i].oEmpleado.apellidos);
+	tdEmp.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._ventas[i].comentarios);
+	tdObs.appendChild(textnode);
+
+	tr.appendChild(tdVeh);
+	tr.appendChild(tdCli);
+	tr.appendChild(tdEmp);
+	tr.appendChild(tdObs);
+	
+	tabla.appendChild(tr);
+	
+	}
+	oDivListados.appendChild(tabla);
+	}
+	else {
+		
+		
+			if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+			}
+		
+			var p = document.createElement("p");
+			p.setAttribute("id","mError")
+			var textnode = document.createTextNode("No hay datos disponibles");
+			p.appendChild(textnode);
+			oDivListados.appendChild(p);
+			oDivListados.style.display = "block";
+		
+
+	}
+
+}
+
+
 
 
 
@@ -462,8 +673,6 @@ function rellenarCombosCompra(){
 		var textnode = document.createTextNode("No hay proveedores dados de alta");
 		optionProv.appendChild(textnode);
 		optionProv = selectCompraProv.appendChild(optionProv);
-		//formRegCompra.appendChild(option);
-		//formRegCompra.selectCompraProv.innerHTML = '<option>No hay proveedores dados de alta</option>';
 	} else {
 		for (var k=0;k<selectCompraProv.length;k++){
 			selectCompraProv.remove(k);
@@ -486,7 +695,7 @@ function rellenarCombosCompra(){
 			selectCompraEmp.remove(k);
 		}
 		var optionEmp = document.createElement("option");
-		var textnode = document.createTextNode("No hay proveedores dados de alta");
+		var textnode = document.createTextNode("No hay empleados dados de alta");
 		optionEmp.appendChild(textnode);
 		optionEmp = selectCompraEmp.appendChild(optionEmp);
 
@@ -505,7 +714,8 @@ function rellenarCombosCompra(){
 			optionEmp.setAttribute("id","comboEmp")
 			var textnode = document.createTextNode(cvCoches._empleados[i].dni+' - '+cvCoches._empleados[i].nombre+' '+cvCoches._empleados[i].apellidos);
 			optionEmp.appendChild(textnode);
-			optionEmp = formRegCompra.selectCompraEmp.appendChild(optionEmp);
+			optionEmp = selectCompraEmp.appendChild(optionEmp);
+
 
 
 		
@@ -521,7 +731,7 @@ function rellenarCombosCompra(){
 			formRegCompra.selectCompraVehiculo.remove(k);
 		}
 		var optionVeh = document.createElement("option");
-		var textnode = document.createTextNode("No hay proveedores dados de alta");
+		var textnode = document.createTextNode("No hay vehiculos dados de alta");
 		optionVeh.appendChild(textnode);
 		optionVeh = formRegCompra.selectCompraVehiculo.appendChild(optionVeh);
 
@@ -542,12 +752,6 @@ function rellenarCombosCompra(){
 			optionVeh.appendChild(textnode);
 			optionVeh = formRegCompra.selectCompraVehiculo.appendChild(optionVeh);
 
-
-
-
-
-		//formRegCompra.selectCompraVehiculo.innerHTML += '<option value="'+cvCoches._vehiculos[i].matricula+'">'++'</option>';
-
 		
 		}
 	}	
@@ -558,23 +762,60 @@ function rellenarCombosVenta(){
 
 	//Combo clientes
 	if (cvCoches._clientes.length==0){
-		formRegVenta.selectVentaCliente.innerHTML = '<option>No hay clientes dados de alta</option>';
+		for (var k=0;k<formRegVenta.selectVentaCliente.length;k++){
+			formRegVenta.selectVentaCliente.remove(k);
+		}
+		var optionProv = document.createElement("option");
+		var textnode = document.createTextNode("No hay clientes dados de alta");
+		optionProv.appendChild(textnode);
+		optionProv = formRegVenta.selectVentaCliente.appendChild(optionProv);
+		//formRegRep.appendChild(option);
+		//formRegRep.selectCompraProv.innerHTML = '<option>No hay proveedores dados de alta</option>';
 	} else {
-		formRegVenta.selectVentaCliente.innerHTML = '';
+		for (var k=0;k<formRegVenta.selectVentaCliente.length;k++){
+			formRegVenta.selectVentaCliente.remove(k);
+		}
 		for (var i=0;i<cvCoches._clientes.length;i++){
-		formRegVenta.selectVentaCliente.innerHTML += '<option value="'+cvCoches._clientes[i].dni+'">'+cvCoches._clientes[i].dni+' - '+cvCoches._clientes[i].nombre+' '+cvCoches._clientes[i].apellidos+'</option>';
-
+			var optionProv = document.createElement("option");
+			optionProv.setAttribute("value",cvCoches._clientes[i].dni)
+			optionProv.setAttribute("id","comboProv")
+			var textnode = document.createTextNode( cvCoches._clientes[i].dni+' - '+cvCoches._clientes[i].nombre+' '+cvCoches._clientes[i].apellidos);
+			optionProv.appendChild(textnode);
+			optionProv = formRegVenta.selectVentaCliente.appendChild(optionProv);
 		
 		}
 	}
 
+
 	//Combo empleados
+	var selectVentaEmp = document.getElementById("selectVentaEmp");
 	if (cvCoches._empleados.length==0){
-		formRegVenta.selectVentaEmp.innerHTML = '<option>No hay empleados dados de alta</option>';
+		for (var k=0;k<selectVentaEmp.length;k++){
+			selectVentaEmp.remove(k);
+		}
+		var optionEmp = document.createElement("option");
+		var textnode = document.createTextNode("No hay empleados dados de alta");
+		optionEmp.appendChild(textnode);
+		optionEmp = selectVentaEmp.appendChild(optionEmp);
+
 	} else {
-		formRegVenta.selectVentaEmp.innerHTML = '';
+
+		for (var k=0;k<selectVentaEmp.length;k++){
+			selectVentaEmp.remove(k);
+		}
+
+		
 		for (var i=0;i<cvCoches._empleados.length;i++){
-		formRegVenta.selectVentaEmp.innerHTML += '<option value="'+cvCoches._empleados[i].dni+'">'+cvCoches._empleados[i].dni+' - '+cvCoches._empleados[i].nombre+' '+cvCoches._empleados[i].apellidos+'</option>';
+			
+
+			var optionEmp = document.createElement("option");
+			optionEmp.setAttribute("value",cvCoches._empleados[i].dni)
+			optionEmp.setAttribute("id","comboEmp")
+			var textnode = document.createTextNode(cvCoches._empleados[i].dni+' - '+cvCoches._empleados[i].nombre+' '+cvCoches._empleados[i].apellidos);
+			optionEmp.appendChild(textnode);
+			optionEmp = selectVentaEmp.appendChild(optionEmp);
+
+
 
 		
 		}
@@ -582,31 +823,70 @@ function rellenarCombosVenta(){
 
 	//Combo Vehiculo
 	if (cvCoches._vehiculos.length==0){
-		formRegVenta.selectVentaVehiculo.innerHTML = '<option>No hay vehiculos dados de alta</option>';
+
+		for (var k=0;k<formRegVenta.selectVentaVehiculo.length;k++){
+			formRegVenta.selectVentaVehiculo.remove(k);
+		}
+		var optionVeh = document.createElement("option");
+		var textnode = document.createTextNode("No hay proveedores dados de alta");
+		optionVeh.appendChild(textnode);
+		optionVeh = formRegVenta.selectVentaVehiculo.appendChild(optionVeh);
+
+
+		
 	} else {
-		formRegVenta.selectVentaVehiculo.innerHTML = '';
+		for (var k=0;k<selectVentaVehiculo.length;k++){
+			selectVentaVehiculo.remove(k);
+		}
+
+		
 		for (var i=0;i<cvCoches._vehiculos.length;i++){
-		formRegVenta.selectVentaVehiculo.innerHTML += '<option value="'+cvCoches._vehiculos[i].matricula+'">'+cvCoches._vehiculos[i].matricula+' - '+cvCoches._vehiculos[i].marca+' '+cvCoches._vehiculos[i].modelo+'</option>';
+
+			var optionVeh = document.createElement("option");
+			optionVeh.setAttribute("value",cvCoches._vehiculos[i].matricula)
+			optionVeh.setAttribute("id","comboVeh")
+			var textnode = document.createTextNode(cvCoches._vehiculos[i].matricula+' - '+cvCoches._vehiculos[i].marca+' '+cvCoches._vehiculos[i].modelo);
+			optionVeh.appendChild(textnode);
+			optionVeh = formRegVenta.selectVentaVehiculo.appendChild(optionVeh);
 
 		
 		}
-	}
+	}	
 }
 
 function rellenarCombosReparacion(){
 	var formRegRep = document.getElementById("formRegReparacion");
 
-	//Combo Vehiculo
-	if (cvCoches._vehiculos.length==0){
-		formRegRep.selectRepVehiculo.innerHTML = '<option>No hay vehiculos dados de alta</option>';
+		if (cvCoches._vehiculos.length==0){
+
+		for (var k=0;k<formRegRep.selectRepVehiculo.length;k++){
+			formRegRep.selectRepVehiculo.remove(k);
+		}
+		var optionVeh = document.createElement("option");
+		var textnode = document.createTextNode("No hay proveedores dados de alta");
+		optionVeh.appendChild(textnode);
+		optionVeh = formRegRep.selectRepVehiculo.appendChild(optionVeh);
+
+
+		
 	} else {
-		formRegRep.selectRepVehiculo.innerHTML = '';
+		for (var k=0;k<selectCompraVehiculo.length;k++){
+			selectCompraVehiculo.remove(k);
+		}
+
+		
 		for (var i=0;i<cvCoches._vehiculos.length;i++){
-		formRegRep.selectVentaVehiculo.innerHTML += '<option value="'+cvCoches._vehiculos[i].matricula+'">'+cvCoches._vehiculos[i].matricula+' - '+cvCoches._vehiculos[i].marca+' '+cvCoches._vehiculos[i].modelo+'</option>';
+
+			var optionVeh = document.createElement("option");
+			optionVeh.setAttribute("value",cvCoches._vehiculos[i].matricula)
+			optionVeh.setAttribute("id","comboVeh")
+			var textnode = document.createTextNode(cvCoches._vehiculos[i].matricula+' - '+cvCoches._vehiculos[i].marca+' '+cvCoches._vehiculos[i].modelo);
+			optionVeh.appendChild(textnode);
+			optionVeh = formRegRep.selectRepVehiculo.appendChild(optionVeh);
 
 		
 		}
-	}
+	}	
 }
 
 //--------------VALIDACION----------------------
@@ -741,20 +1021,7 @@ function validarAltaEmpleado(oEvento)
 		formAltaEmpleado.apeEmp.classList.remove("error");
 	}
 
-	//campo nº de ventas
-	var nVentas = formAltaEmpleado.ventasEmp.value.trim();
-	formAltaEmpleado.ventasEmp.value = formAltaEmpleado.ventasEmp.value.trim();
-	var oExpReg = /^\d+$/;
 
-	if (oExpReg.test(nVentas) == false)
-	{
-		formAltaEmpleado.ventasEmp.classList.add("error");
-		formAltaEmpleado.ventasEmp.focus();
-		bValido = false;
-		sError += "Introduzca numero de ventas \n"; 
-	} else {
-		formAltaEmpleado.ventasEmp.classList.remove("error");
-	}
 
 	//campo salario 
 	var nSalario = formAltaEmpleado.salEmp.value.trim();
