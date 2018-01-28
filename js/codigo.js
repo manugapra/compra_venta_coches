@@ -272,8 +272,6 @@ function enviarCompra()
 		var selectCompraProv= formRegCompra.selectCompraProv.value.trim();
 		var selectCompraEmp= formRegCompra.selectCompraEmp.value.trim();
 		var observCompraVehiculo= formRegCompra.observCompraVehiculo.value.trim();
-
-		//console.log(selectCompraVehiculo+' '+importeCompraVehiculo+' '+fechaCompraVehiculo+' '+selectCompraProv);
 		
 		var oCompra = new Compra(selectCompraVehiculo,importeCompraVehiculo,fechaCompraVehiculo,selectCompraProv,selectCompraEmp,observCompraVehiculo);
 		
@@ -505,8 +503,7 @@ function rellenarCombosCompra(){
 			optionEmp.setAttribute("id","comboEmp")
 			var textnode = document.createTextNode(cvCoches._empleados[i].dni+' - '+cvCoches._empleados[i].nombre+' '+cvCoches._empleados[i].apellidos);
 			optionEmp.appendChild(textnode);
-			optionEmp = selectCompraEmp.appendChild(optionEmp);
-
+			optionEmp = formRegCompra.selectCompraEmp.appendChild(optionEmp);
 
 
 		
@@ -541,7 +538,7 @@ function rellenarCombosCompra(){
 			optionVeh.setAttribute("id","comboVeh")
 			var textnode = document.createTextNode(cvCoches._vehiculos[i].matricula+' - '+cvCoches._vehiculos[i].marca+' '+cvCoches._vehiculos[i].modelo);
 			optionVeh.appendChild(textnode);
-			optionVeh = formRegCompra.selectCompraVehiculo.appendChild(optionEmp);
+			optionVeh = formRegCompra.selectCompraVehiculo.appendChild(optionVeh);
 
 
 

@@ -91,9 +91,28 @@ class CVCoches {
 	{
 		var bEncontrado = false;
 		var sMensaje = '';
+
+		for(var i=0; i<this._compras.length && bEncontrado==false; i++){
+			if(this._compras[i].oVehiculo==oCompra.oVehiculo && this._compras[i] instanceof Compra){
+				bEncontrado= true;
+			}
+		}
+		if (bEncontrado==true) 
+			sMensaje = 'Compra realizada anteriormente';
+		else
+		{
+			this._compras.push(oCompra);
+			sMensaje = 'Compra realizada';
+		}
+		
+		return sMensaje;
+		
 	}
 
+
 }
+
+
 
 function Proveedor(cif, nombre, direccion, telefono){
 	this.cif= cif;
