@@ -81,8 +81,35 @@ class CVCoches {
 		}else{
 			this._vehiculos.push(oVehiculo);
 			sMensaje = "Vehiculo dado de alta";
+			if (oVehiculo.tipoVehiculo=='coche') 
+			{
+				sMensaje = "Coche dado de alta";
+			}
+			else
+				sMensaje = "Camion dado de alta";
 		}
 			
+		return sMensaje;
+	}
+
+	//ALTA REPARACION
+	altaReparacion(oReparacion)
+	{
+		var bEncontrado = false;
+		var sMensaje = '';
+
+		for(var i=0; i<this._reparaciones.length && bEncontrado==false; i++){
+			if(this._reparaciones[i].oVehiculo==oReparacion.oVehiculo && this._reparaciones[i] instanceof Reparacion){
+				bEncontrado= true;
+			}
+		}
+		if (bEncontrado==true) 
+			sMensaje = 'Reparacion realizada anteriormente';
+		else
+		{
+			this._reparaciones.push(oReparacion);
+			sMensaje = 'Reparacion realizada';
+		}
 		return sMensaje;
 	}
 
@@ -91,9 +118,45 @@ class CVCoches {
 	{
 		var bEncontrado = false;
 		var sMensaje = '';
+
+		for(var i=0; i<this._compras.length && bEncontrado==false; i++){
+			if(this._compras[i].oVehiculo==oCompra.oVehiculo && this._compras[i] instanceof Compra){
+				bEncontrado= true;
+			}
+		}
+		if (bEncontrado==true) 
+			sMensaje = 'Compra realizada anteriormente';
+		else
+		{
+			this._compras.push(oCompra);
+			sMensaje = 'Compra realizada';
+		}
+		return sMensaje;
+	}
+
+	//ALTA VENTA
+	altaVenta(oVenta)
+	{
+		var bEncontrado = false;
+		var sMensaje = '';
+
+		for(var i=0; i<this._ventas.length && bEncontrado==false; i++){
+			if(this._ventas[i].oVehiculo==oVenta.oVehiculo && this._ventas[i] instanceof Venta){
+				bEncontrado= true;
+			}
+		}
+		if (bEncontrado==true) 
+			sMensaje = 'Compra realizada anteriormente';
+		else
+		{
+			this._ventas.push(oVenta);
+			sMensaje = 'Compra realizada';
+		}
+		return sMensaje;
 	}
 
 }
+
 
 function Proveedor(cif, nombre, direccion, telefono){
 	this.cif= cif;
@@ -158,11 +221,11 @@ Cliente.prototype.toHTMLRow= function(){
 		   "<td>"+this.telefono+"</td>";
 }
 
-function Venta(oVehiculo, oCliente, oEmpleado, fecha, comentarios){
+function Venta(oVehiculo, oCliente, oEmpleado,importe, fecha, comentarios){
 	this.oVehiculo= oVehiculo;
 	this.importe= importe;
 	this.fecha= fecha;
-	this.oProveedor = oProveedor;
+	this.oCliente = oCliente;
 	this.oEmpleado = oEmpleado;
 	this.comentarios = comentarios;
 }
@@ -194,11 +257,12 @@ Vehiculo.prototype.toHTMLRow= function(){
 		   "<td>"+this.plazas+"</td>";
 }
 
-function Coche(matricula, marca, modelo, tasacion, combustible, plazas, numPuertas, tapiceria, tipoCoche){
+function Coche(matricula, marca, modelo, tasacion, combustible, plazas, numPuertas, tapiceria, tipoCoche,tipoVehiculo){
 	Vehiculo.call(this, matricula, marca, modelo, tasacion, combustible, plazas);
 	this.numPuertas= numPuertas;
 	this.tapiceria = tapiceria;
 	this.tipoCoche = tipoCoche;
+	this.tipoVehiculo = tipoVehiculo;
 }
 
 Coche.prototype= Object.create(Vehiculo.prototype);
@@ -216,11 +280,12 @@ Coche.prototype.toHTMLRow= function(){
 		   "<td>"+this.tipoCoche+"</td>";
 }
 
-function Camion(matricula, marca, modelo, tasacion, combustible, plazas, cargaMaxima, tipoCarga, capacidadCombustible){
+function Camion(matricula, marca, modelo, tasacion, combustible, plazas, cargaMaxima, tipoCarga, capacidadCombustible,tipoVehiculo){
 	Vehiculo.call(this, matricula, marca, modelo, tasacion, combustible, plazas);
 	this.cargaMaxima= cargaMaxima;
 	this.tipoCarga= tipoCarga;
 	this.capacidadCombustible= capacidadCombustible;
+	this.tipoVehiculo = tipoVehiculo;
 }
 
 Camion.prototype= Object.create(Vehiculo.prototype);
@@ -236,4 +301,17 @@ Camion.prototype.toHTMLRow= function(){
 		   "<td>"+this.cargaMaxima+"</td>"+
 		   "<td>"+this.tipoCarga+"</td>"+
 		   "<td>"+this.capacidadCombustible+"</td>";
+}
+
+function Reparacion(selectVeh,descVeh,nCoste)
+{
+	this.selectVeh=selectVeh;
+	this.descVeh=descVeh;
+	this.nCoste=nCoste;
+}
+
+Reparacion.prototype.toHTMLRow= function(){
+	return "<td>"+this.selectVeh+"</td>"+
+		   "<td>"+this.descVeh+"</td>"+
+		   "<td>"+this.nCoste+"</td>";
 }
