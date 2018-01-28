@@ -80,7 +80,13 @@ class CVCoches {
 			sMensaje = "Vehiculo dado de alta anteriormente";
 		}else{
 			this._vehiculos.push(oVehiculo);
-			sMensaje = "Vehiculo dado de alta";
+			if (oVehiculo.tipoVehiculo=='coche') 
+			{
+				sMensaje = "Coche dado de alta";
+			}
+			else
+				sMensaje = "Camion dado de alta";
+			
 		}
 			
 		return sMensaje;
@@ -104,9 +110,7 @@ class CVCoches {
 			this._compras.push(oCompra);
 			sMensaje = 'Compra realizada';
 		}
-		
 		return sMensaje;
-		
 	}
 
 
@@ -213,11 +217,12 @@ Vehiculo.prototype.toHTMLRow= function(){
 		   "<td>"+this.plazas+"</td>";
 }
 
-function Coche(matricula, marca, modelo, tasacion, combustible, plazas, numPuertas, tapiceria, tipoCoche){
+function Coche(matricula, marca, modelo, tasacion, combustible, plazas, numPuertas, tapiceria, tipoCoche,tipoVehiculo){
 	Vehiculo.call(this, matricula, marca, modelo, tasacion, combustible, plazas);
 	this.numPuertas= numPuertas;
 	this.tapiceria = tapiceria;
 	this.tipoCoche = tipoCoche;
+	this.tipoVehiculo = tipoVehiculo;
 }
 
 Coche.prototype= Object.create(Vehiculo.prototype);
@@ -235,11 +240,12 @@ Coche.prototype.toHTMLRow= function(){
 		   "<td>"+this.tipoCoche+"</td>";
 }
 
-function Camion(matricula, marca, modelo, tasacion, combustible, plazas, cargaMaxima, tipoCarga, capacidadCombustible){
+function Camion(matricula, marca, modelo, tasacion, combustible, plazas, cargaMaxima, tipoCarga, capacidadCombustible,tipoVehiculo){
 	Vehiculo.call(this, matricula, marca, modelo, tasacion, combustible, plazas);
 	this.cargaMaxima= cargaMaxima;
 	this.tipoCarga= tipoCarga;
 	this.capacidadCombustible= capacidadCombustible;
+	this.tipoVehiculo = tipoVehiculo;
 }
 
 Camion.prototype= Object.create(Vehiculo.prototype);

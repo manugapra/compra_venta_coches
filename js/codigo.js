@@ -179,7 +179,8 @@ function enviarAltaVehiculo()
 				var tapiceriaCoche = formAltaVeh.tapiceriaCoche.value.trim();
 				var tpCoche = formAltaVeh.tpCoche.value.trim();
 
-				var oCoche = new Coche(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,nPuertasCoche,tapiceriaCoche,tpCoche);
+				var oCoche = new Coche(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,nPuertasCoche,tapiceriaCoche,tpCoche,tipoVehiculo);
+				sMensaje = cvCoches.altaVehiculo(oCoche);
 
 			}
 			else
@@ -188,10 +189,11 @@ function enviarAltaVehiculo()
 				var tipoCargaCamion = formAltaVeh.tipoCargaCamion.value.trim();
 				var capCombCamion = formAltaVeh.capCombCamion.value.trim();
 
-				var oCamion = new Camion(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,cargaCamion,tipoCargaCamion,capCombCamion);
+				var oCamion = new Camion(matVehiculo,marcaVehiculo,modVehiculo,tasVehiculo,combVehiculo,plazasVehiculo,cargaCamion,tipoCargaCamion,capCombCamion,tipoVehiculo);
+				sMensaje = cvCoches.altaVehiculo(oCamion);
 			}
 			
-			sMensaje = cvCoches.altaVehiculo(oVehiculo);
+			
 	        //altaEmpleado();
 		//}
 
