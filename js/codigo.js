@@ -769,10 +769,10 @@ function mostrarListaCompras()
 	textnode = document.createTextNode(cvCoches._compras[i].oVehiculo);
 	tdVeh.appendChild(textnode);
 	
-	textnode = document.createTextNode(cvCoches._compras[i].oImporte);
+	textnode = document.createTextNode(cvCoches._compras[i].importe);
 	tdImp.appendChild(textnode);
 
-	textnode = document.createTextNode(cvCoches._compras[i].oFecha);
+	textnode = document.createTextNode(cvCoches._compras[i].fecha);
 	tdFech.appendChild(textnode);
 
 	textnode = document.createTextNode(cvCoches._compras[i].oProveedor);
@@ -1003,7 +1003,7 @@ function mostrarListarVehiculos()
 	textnode = document.createTextNode(cvCoches._vehiculos[i].modelo);
 	tdMod.appendChild(textnode);
 
-	textnode = document.createTextNode(cvCoches._vehiculos[i].tasasion);
+	textnode = document.createTextNode(cvCoches._vehiculos[i].tasacion);
 	tdTas.appendChild(textnode);
 
 	textnode = document.createTextNode(cvCoches._vehiculos[i].combustible);
