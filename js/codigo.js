@@ -284,7 +284,7 @@ function enviarCompra()
 	ocultarFormularios();
 	}
 		
-	}
+	
 }
 
 
