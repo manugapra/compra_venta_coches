@@ -191,11 +191,10 @@ Compra.prototype.toHTMLRow= function(){
 		   "<td>"+this.comentarios+"</td>";
 }
 
-function Empleado(dni, nombre, apellidos, numVentas, salario){
+function Empleado(dni, nombre, apellidos, salario){
 	this.dni= dni;
 	this.nombre= nombre;
 	this.apellidos= apellidos;
-	this.numVentas = numVentas;
 	this.salario = salario;
 }
 

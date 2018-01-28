@@ -69,6 +69,11 @@ oBtnListarCompras.addEventListener("click", mostrarListaCompras, false);
 var oBtnListarReparaciones = document.getElementById("btnListarReparaciones");
 oBtnListarReparaciones.addEventListener("click", mostrarListaReparaciones, false);
 
+var oBtnListarVehiculos = document.getElementById("btnListarVehiculos");
+oBtnListarVehiculos.addEventListener("click", mostrarListarVehiculos, false);
+
+var oBtnListarEmple = document.getElementById("btnListarEmpleados");
+oBtnListarEmple.addEventListener("click", mostrarListaEmple, false);
 
 function altaProveedor(){
 	
@@ -907,7 +912,233 @@ function mostrarListaReparaciones()
 	}
 }
 
+function mostrarListarVehiculos()
+{
+	ocultarFormularios();
+	var oDivListados = document.getElementById("listas");
+	
+	if (cvCoches._vehiculos.length!==0){
+		
+	if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+			}
+	oDivListados.style.display = "block";
+	//oDivListados.innerHTML = cvCoches._proveedores[0].toHTMLRow();
 
+	var tabla = document.createElement("table");
+	tabla.setAttribute("border","1");
+	
+	tabla.setAttribute("id","tabla");
+	tabla.setAttribute("class","table table-hover");
+	
+	var thMat = document.createElement("th");
+	var thMar = document.createElement("th");
+	var thMod = document.createElement("th");
+	var thTas = document.createElement("th");
+	var thComb = document.createElement("th");
+	var thPla = document.createElement("th");
+	var thTip = document.createElement("th");
+
+	var textnode = document.createTextNode("Matricula");
+	thMat.appendChild(textnode);
+	tabla.appendChild(thMat);
+
+	var textnode = document.createTextNode("Marca");
+	thMar.appendChild(textnode);
+	tabla.appendChild(thMar);
+
+	var textnode = document.createTextNode("Modelo");
+	thMod.appendChild(textnode);
+	tabla.appendChild(thMod);
+
+	var textnode = document.createTextNode("Tasación");
+	thTas.appendChild(textnode);
+	tabla.appendChild(thTas);
+
+	var textnode = document.createTextNode("Combustible");
+	thComb.appendChild(textnode);
+	tabla.appendChild(thComb);
+
+	var textnode = document.createTextNode("Plazas");
+	thPla.appendChild(textnode);
+	tabla.appendChild(thPla);
+
+	var textnode = document.createTextNode("Tipo");
+	thTip.appendChild(textnode);
+	tabla.appendChild(thTip);
+
+
+
+	for(var i=0;i<cvCoches._vehiculos.length;i++){
+
+	var tr = document.createElement("tr");
+	var tdMat = document.createElement("td");
+	var tdMar = document.createElement("td");
+	var tdMod = document.createElement("td");
+	var tdTas = document.createElement("td");
+	var tdComb= document.createElement("td");
+	var tdPla = document.createElement("td");
+	var tdTip = document.createElement("td");
+
+	/*textnode = document.createTextNode(cvCoches._ventas[i].oVehiculo.matricula+' - '+cvCoches._ventas[i].oVehiculo.marca+' '+cvCoches._ventas[i].oVehiculo.modelo);
+	tdVeh.appendChild(textnode);
+	
+	textnode = document.createTextNode(cvCoches._ventas[i].oCliente.dni+' - '+cvCoches._ventas[i].oCliente.nombre+' '+cvCoches._ventas[i].oCliente.apellidos);
+	tdCli.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._ventas[i].oEmpleado.dni+ ' - '+cvCoches._ventas[i].oEmpleado.nombre+' '+cvCoches._ventas[i].oEmpleado.apellidos);
+	tdEmp.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._ventas[i].comentarios);
+	tdObs.appendChild(textnode);*/
+
+	textnode = document.createTextNode(cvCoches._vehiculos[i].matricula);
+	tdMat.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._vehiculos[i].marca);
+	tdMar.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._vehiculos[i].modelo);
+	tdMod.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._vehiculos[i].tasasion);
+	tdTas.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._vehiculos[i].combustible);
+	tdComb.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._vehiculos[i].plazas);
+	tdPla.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._vehiculos[i].tipoVehiculo);
+	tdTip.appendChild(textnode);
+
+	tr.appendChild(tdMat);
+	tr.appendChild(tdMar);
+	tr.appendChild(tdMod);
+	tr.appendChild(tdTas);
+	tr.appendChild(tdComb);
+	tr.appendChild(tdPla);
+	tr.appendChild(tdTip);
+
+	tabla.appendChild(tr);
+	
+	}
+	oDivListados.appendChild(tabla);
+	}
+	else {
+		
+		
+			if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+			}
+		
+			var p = document.createElement("p");
+			p.setAttribute("id","mError")
+			var textnode = document.createTextNode("No hay datos disponibles");
+			p.appendChild(textnode);
+			oDivListados.appendChild(p);
+			oDivListados.style.display = "block";
+		
+
+	}
+}
+
+
+function mostrarListaEmple(){
+	ocultarFormularios();
+	var oDivListados = document.getElementById("listas");
+	
+	if (cvCoches._empleados.length!==0){
+	if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+	}
+	oDivListados.style.display = "block";
+
+
+	var tabla = document.createElement("table");
+	tabla.setAttribute("border","1");
+	tabla.setAttribute("id","tabla");
+	tabla.setAttribute("class","table table-hover");
+	
+	var thDni = document.createElement("th");
+	var thNom = document.createElement("th");
+	var thApe = document.createElement("th");
+	var thSal = document.createElement("th");
+
+
+	var textnode = document.createTextNode("DNI");
+	thDni.appendChild(textnode);
+	tabla.appendChild(thDni);
+
+
+	var textnode = document.createTextNode("Nombre");
+	thNom.appendChild(textnode);
+	tabla.appendChild(thNom);
+
+	var textnode = document.createTextNode("Apellidos");
+	thApe.appendChild(textnode);
+	tabla.appendChild(thApe);
+
+	var textnode = document.createTextNode("Salario");
+	thSal.appendChild(textnode);
+	tabla.appendChild(thSal);
+
+
+	for(var i=0;i<cvCoches._empleados.length;i++){
+
+	var tr = document.createElement("tr");
+	var tdDni = document.createElement("td");
+	var tdNom = document.createElement("td");
+	var tdApe = document.createElement("td");
+	var tdSal = document.createElement("td");
+	
+	textnode = document.createTextNode(cvCoches._empleados[i].dni);
+	tdDni.appendChild(textnode);
+	
+	textnode = document.createTextNode(cvCoches._empleados[i].nombre);
+	tdNom.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._empleados[i].apellidos);
+	tdApe.appendChild(textnode);
+
+	textnode = document.createTextNode(cvCoches._empleados[i].salario);
+	tdSal.appendChild(textnode);
+
+	tr.appendChild(tdDni);
+	tr.appendChild(tdNom);
+	tr.appendChild(tdApe);
+	tr.appendChild(tdSal);
+	
+	tabla.appendChild(tr);
+	
+	}
+	oDivListados.appendChild(tabla);
+	}
+	else {
+		if ( oDivListados.hasChildNodes() ){
+				while ( oDivListados.childNodes.length >= 1 ){
+					oDivListados.removeChild( oDivListados.firstChild );
+				}
+			}
+			var p = document.createElement("p");
+			p.setAttribute("id","mError")
+			var textnode = document.createTextNode("No hay datos disponibles");
+			p.appendChild(textnode);
+			oDivListados.appendChild(p);
+			oDivListados.style.display = "block";
+		
+
+	}
+
+
+}
 
 
 
