@@ -101,14 +101,31 @@ function enviarAltaProveedor(){
 		var dirProv= formAltaProv.dirProv.value.trim();
 		var telProv= formAltaProv.telProv.value.trim();
 		//var tipoProv= formAltaProv.tipoProv.value.trim();
-		
-		var oProveedor= new Proveedor(cifProv,nomProv,dirProv,telProv);
-		
-		sMensaje = cvCoches.altaProveedor(oProveedor);
+	/*	$.post("personas.php", {prueba: "funciona"},
+		function (data,status){
+			$("body").text(data);
+		});*/
+
+		//var oProveedor= new Proveedor(cifProv,nomProv,dirProv,telProv);
+		$.post("php/alta.php", {m: "proveedor", c: cifProv, n: nomProv, d: dirProv, t: telProv },
+			function (data,status){
+				if(status=="success"){
+					
+					$("#mensaje").append(data);
+				} else {
+					$("#mensaje").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Ha ocurrido un error de conexión</strong></div>')
+
+
+				}
+			});
+
+
+
+		//sMensaje = cvCoches.altaProveedor(oProveedor);
         //altaProveedor();
 	//}
 
-	alert(sMensaje);
+	//alert(sMensaje);
 	ocultarFormularios();
 	}
 
@@ -141,13 +158,29 @@ function enviarAltaEmpleado(){
 			var apeEmp= formAltaEmpleado.apeEmp.value.trim();
 			var salEmp= formAltaEmpleado.salEmp.value.trim();
 			
-			var oEmpleado= new Empleado(dniEmp,nomEmp,apeEmp,salEmp);
+			//var oEmpleado= new Empleado(dniEmp,nomEmp,apeEmp,salEmp);
 			
-			sMensaje = cvCoches.altaEmpleado(oEmpleado);
+			//sMensaje = cvCoches.altaEmpleado(oEmpleado);
+
+			$.post("php/alta.php", {m: "empleado", d: dniEmp, n: nomEmp, a: apeEmp, s: salEmp },
+			function (data,status){
+
+				if(status=="success"){
+					
+					$("#mensaje").append(data);
+				} else {
+					$("#mensaje").append('<div class="alert alert-danger"><a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a><strong>Ha ocurrido un error de conexión</strong></div>')
+
+
+				}
+				
+			});
+
+
 	        //altaEmpleado();
 		//}
 
-		alert(sMensaje);
+		//alert(sMensaje);
 		ocultarFormularios();
 	}
 
@@ -1145,6 +1178,7 @@ function mostrarListaEmple(){
 //OCULTAR FORMULARIOS
 
 function ocultarFormularios(){
+	$("#mensaje").empty(); 
 	document.getElementById("formAltaProv").style.display = "none";
 	document.getElementById("formAltaEmpleado").style.display = "none";
 	document.getElementById("formAltaVeh").style.display = "none";
@@ -1154,6 +1188,7 @@ function ocultarFormularios(){
 	document.getElementById("formRegReparacion").style.display = "none";
 	//Ocultar listas
 	document.getElementById("listas").style.display = "none";
+	
 }
 
 var oBtnTipoCoche= document.getElementById("radioCoche");
